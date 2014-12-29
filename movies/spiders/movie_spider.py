@@ -10,8 +10,6 @@ class MovieSpider(CrawlSpider):
     allowed_domains = ["www.rottentomatoes.com"]
     start_urls = [
         "http://www.rottentomatoes.com/top/bestofrt/?year=2014",
-#        "http://www.rottentomatoes.com/top/bestofrt/?year=2013",
-#        "http://www.rottentomatoes.com/top/bestofrt/?year=2012",
     ]
 
     rules = (
