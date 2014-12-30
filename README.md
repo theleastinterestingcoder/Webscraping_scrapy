@@ -30,7 +30,11 @@ Scraping all the reviews
 The structure of `rottentomatoes.com` page looks like this:
 ![Structure of the domain we want to scrape](https://github.com/theleastinterestingcoder/Webscraping_scrapy/blob/master/resources/outline.jpg)
 
-We want to grab everything the blue box: the review given, and whether the author thought the movie was fresh or rotten. To do that, we need `spiders` that will do the following:
+For each review, we want to know:
+* the review given
+* is the movie fresh or rotten?
+
+To do that, we'll need `spiders` that will do wander through all the links. More specifically, we want to:
 
 * Start at the initial URL `http://www.rottentomatoes.com/top/bestofrt/?year=2014`
 
@@ -39,3 +43,5 @@ We want to grab everything the blue box: the review given, and whether the autho
 * Look and then scrape for all the reviews. Ex: `http://www.rottentomatoes.com/m/boyhood/reviews/`
 
 * If the movie has more than one page, follow and scrape those. Ex: `http://www.rottentomatoes.com/m/boyhood/reviews/?page=2`
+
+
