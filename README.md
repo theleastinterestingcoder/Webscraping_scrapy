@@ -18,7 +18,7 @@ Installing Scrapy
 If you have pip (which I strongly recommend that you install for these tutorials), just type:
 
 ```
-http://scrapy.org/
+pip install scrapy
 ```
 
 If things break in the middle of your installation, don't panic! You might need to install some basic dependencies (such as xcode). 
@@ -30,4 +30,12 @@ Scraping all the reviews
 The structure of `rottentomatoes.com` page looks like this:
 ![Structure of the domain we want to scrape](https://github.com/theleastinterestingcoder/Webscraping_scrapy/blob/master/resources/outline.jpg)
 
-We want to grab everything the blue box: the review given, and whether the author thought the movie was fresh or rotten. 
+We want to grab everything the blue box: the review given, and whether the author thought the movie was fresh or rotten. To do that, we need `spiders` that will do the following:
+
+* Start at the initial URL `http://www.rottentomatoes.com/top/bestofrt/?year=2014`
+
+* Venture to the landing page of each movie Ex: `http://www.rottentomatoes.com/m/boyhood/`
+
+* Look and then scrape for all the reviews. Ex: `http://www.rottentomatoes.com/m/boyhood/reviews/`
+
+* If the movie has more than one page, follow and scrape those. Ex: `http://www.rottentomatoes.com/m/boyhood/reviews/?page=2`
