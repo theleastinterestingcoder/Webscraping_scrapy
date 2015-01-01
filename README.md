@@ -6,7 +6,26 @@ How to crawl through a website using Scrapy spiders
 Introduction 
 ------
 
-Scrapy (http://scrapy.org/) is a powerful tool that will collect information across different webpages. Scrapy starts with one webpage and unleashes `spiders` that preform depth first searches of the target website. In this example, we'll scrape all the reviews written about the top movies of 2014. 
+Scrapy (http://scrapy.org/) is a powerful tool that will collect information across different webpages. Scrapy starts with one webpage and unleashes `spiders` that preform depth first searches of the target website. In this example, we'll scrape rotten tomatoes and grab all the reviews written about the top movies of 2014. 
+
+What Scrapy is Doing Under the Hood
+-------
+
+A domain consists of a series of nodes (webpages) and links between these nodes (links): 
+
+![Structure of the domain we want to scrape](https://github.com/theleastinterestingcoder/Webscraping_scrapy/blob/master/resources/img_web2db.gif)
+
+When scraping a webpage, there are a couple of challenges that scrapy helps us solve:
+
+* Keeping track of the webpages (nodes) we've already visited.
+* Keeping track of the links (edges) we've haven't tried yet.
+* Restricting which links/nodes we want to search.
+* Crawling and scraping webpages in parallel - this involves facilitating communication between all of our spiders.
+* Defining behavoir for handling links. Ex: We want to follow, but not scrape intermediate pages. 
+* Defining the search behavoir. Ex: we want to do a BFS instead of a DFS (default). 
+* And much, much more. 
+
+As you'll see, Scrapy does a good job addressing these problems, but it doesn't solve everything. 
 
 
 Installing Scrapy
@@ -19,6 +38,7 @@ pip install scrapy
 ```
 
 If things break in the middle of your installation, don't panic! You might need to install some basic dependencies (such as xcode). 
+
 
 
 Scraping all the reviews
@@ -58,7 +78,7 @@ This tells scrapy to crawl the internet using the spiders that have been named `
     written by: Quan Zhou
     written on: December 24th, 2014
 
-    A python script to pull movie reviews from rotton tomatoes. 
+    A python script to pull movie reviews from www.rottentomatoes.com
 
 
 2014-12-31 20:45:56-0500 [scrapy] INFO: Scrapy 0.24.4 started (bot: movies)
@@ -119,29 +139,11 @@ Title: [u"12 O'clock Boys Reviews"] , Page 1 of 3
 ```
 
 Here are some important points:
-* Each spider crawls through all the links as a DFS
-* Since there are multiple spiders, You'll note that there's no real order that the links are traversed. 
+* Each spider crawls through all the links as a Depth First Search Order. Each spider will traverse the freshest link avaible. 
+* Since there are multiple spiders, You'll note that there's no real order or pattern that data is generated.
 * `Crawled (200): <GET ...>` means that a spider successfully located and crawled the URL with a GET request. The `200` is the response code for a successful request. `404` is the response code for a `page not found` error, and `403` is the response code for non-adequate permissions. 
 
 
-What Scrapy is Doing Under the Hood
--------
-
-A domain consists of a series of nodes (webpages) and links between these nodes (links): 
-
-![Structure of the domain we want to scrape](https://github.com/theleastinterestingcoder/Webscraping_scrapy/blob/master/resources/img_web2db.gif)
-
-When scraping a webpage, there are a couple of challenges that scrapy helps us solve:
-
-* Keeping track of the webpages (nodes) we've already visited
-* Keeping track of the links (edges) we've haven't tried yet
-* Restricting which links/nodes we want to search
-* Crawling and scraping webpages in parallel - this involves facilitating communication between all of our spiders
-* Defining behavoir for handling links. Ex: We want to follow, but not scrape certain links. 
-* Defining the search behavoir. Ex: we want to do a BFS instead of a DFS (default). 
-* And much, much more. 
-
-Scrapy does a good job addressing these problems, but it doesn't solve everything. 
 
 Fundamental Limitations
 ---------

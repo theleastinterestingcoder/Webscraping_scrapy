@@ -4,7 +4,7 @@
     written by: Quan Zhou
     written on: December 24th, 2014
 
-    A python script to pull movie reviews from rotton tomatoes. 
+    A python script to pull movie reviews from www.rottentomatoes.com
 
 '''
 
